@@ -13,7 +13,7 @@ data class CityForecast(
     @Json(name = "cod")
     val cod: String,
     @Json(name = "list")
-    val list: List<Forecast>,
+    val forecast: List<Forecast>,
     @Json(name = "message")
     val message: Int
 )

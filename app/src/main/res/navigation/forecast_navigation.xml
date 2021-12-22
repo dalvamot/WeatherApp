@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/forecast_navigation"
+    app:startDestination="@id/CitySearchFragment">
+
+    <fragment
+        android:id="@+id/CitySearchFragment"
+        android:name="com.vt.weatherapp.ui.CityFragment"
+        android:label="Search city">
+
+        <action
+            android:id="@+id/action_CitySearchFragment_to_CityForecastFragment"
+            app:destination="@id/CityForecastFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/CityForecastFragment"
+        android:name="com.vt.weatherapp.ui.CityForecastFragment"
+        android:label="City forecast">
+        <action
+            android:id="@+id/action_CityForecastFragment_to_ForecastDetailsFragment"
+            app:destination="@id/ForecastDetailsFragment" />
+    </fragment>
+
+    <fragment
+        android:label="Forecast details"
+        android:id="@+id/ForecastDetailsFragment"
+        android:name="com.vt.weatherapp.ui.ForecastDetails"/>
+
+</navigation>
