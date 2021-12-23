@@ -7,6 +7,8 @@
         <entry key="app/src/main/res/layout/forecast_items.xml" value="0.45" />
         <entry key="app/src/main/res/layout/fragment_city.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_city_forecast.xml" value="0.375" />
+        <entry key="app/src/main/res/layout/fragment_forecast_details.xml" value="0.375" />
+        <entry key="app/src/main/res/layout/fragment_navigation.xml" value="0.17147922998986828" />
       </map>
     </option>
   </component>

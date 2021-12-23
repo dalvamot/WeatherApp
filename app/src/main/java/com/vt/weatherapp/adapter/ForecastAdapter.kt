@@ -36,7 +36,7 @@ class ForecastAdapter(
 
         holder.weather.text = forecast.weather[0].main
         holder.forecastDate.text = forecast.dtTxt
-        holder.temperature.text = forecast.main.temp.toString()
+        holder.temperature.text = String.format("%.0f", toFarenheit(forecast.main.temp))
 
         holder.city.text = String.format(Locale.getDefault(), city?.name + ", " + city?.country)
 
@@ -45,10 +45,12 @@ class ForecastAdapter(
         }
     }
 
-    override fun getItemCount(): Int {
-        TODO("Not yet implemented")
-    }
+    override fun getItemCount(): Int = forecastList.size
 
+}
+
+fun toFarenheit(kelvin: Double): Double{
+    return ( kelvin-273.15)*9/5+32
 }
 
 class ForecastViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){

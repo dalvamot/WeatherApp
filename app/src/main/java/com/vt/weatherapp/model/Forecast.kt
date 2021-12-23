@@ -3,6 +3,7 @@ package com.vt.weatherapp.model
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
+import java.io.Serializable
 
 @JsonClass(generateAdapter = true)
 data class Forecast(
@@ -15,9 +16,9 @@ data class Forecast(
     @Json(name = "main")
     val main: Main,
     @Json(name = "pop")
-    val pop: Int,
+    val pop: Double,
     @Json(name = "rain")
-    val rain: Rain,
+    val rain: Rain?,
     @Json(name = "sys")
     val sys: Sys,
     @Json(name = "visibility")
@@ -26,4 +27,4 @@ data class Forecast(
     val weather: List<Weather>,
     @Json(name = "wind")
     val wind: Wind
-)
+): Serializable

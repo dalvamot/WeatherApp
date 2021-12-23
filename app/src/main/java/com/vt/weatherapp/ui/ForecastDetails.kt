@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.vt.weatherapp.R
+import com.vt.weatherapp.databinding.FragmentForecastDetailsBinding
+import com.vt.weatherapp.model.Forecast
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -22,6 +24,11 @@ class ForecastDetails : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
+    private lateinit var binding: FragmentForecastDetailsBinding
+    private lateinit var forecast: Forecast
+
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -34,20 +41,27 @@ class ForecastDetails : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        binding = FragmentForecastDetailsBinding.inflate(inflater, container, false)
+        forecast = arguments?.getSerializable(CityForecastFragment.FORECAST) as Forecast
+
+
+        binding.tempTv.text = "Temperature: " + String.format("%.0f", toFarenheit(forecast.main.temp))
+        binding.minTv.text = "MIN: " +String.format("%.0f", toFarenheit(forecast.main.tempMin))
+        binding.maxTv.text = "MAX: " + String.format("%.0f", toFarenheit(forecast.main.tempMax))
+        binding.humidityTv.text = "Humidity: " + forecast.main.humidity.toString()
+        binding.weatherTv.text = "Weather: " + forecast.weather[0].main
+        binding.descriptionTv.text = "Description: " + forecast.weather[0].description
+        binding.pressureTv.text = "Pressure: " + forecast.main.pressure
+        binding.feelsLikeTv.text = "Feels like: " + String.format("%.0f", toFarenheit(forecast.main.feelsLike))
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_forecast_details, container, false)
+        return binding.root
+    }
+
+    fun toFarenheit(kelvin: Double): Double{
+        return ( kelvin-273.15)*9/5+32
     }
 
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment ForecastDetails.
-         */
-        // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
             ForecastDetails().apply {
